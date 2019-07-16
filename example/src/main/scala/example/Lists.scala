@@ -51,11 +51,11 @@ object Lists {
         println("Empty list")
         throw new NoSuchElementException("Can't find the max of an empty list")
       } else {
-        maxCalcImpl(xs.tail, xs.head)
+        maxCalc(xs.tail, xs.head)
       }
     }
 
-    def maxCalcImpl(xs: List[Int], currentMax: Int): Int = {
+    def maxCalc(xs: List[Int], currentMax: Int): Int = {
       if (xs.tail.isEmpty) {
         currentMax
       } else {
@@ -63,7 +63,7 @@ object Lists {
         if (xs.head > currentMax) {
           max = xs.head
         }
-        maxCalcImpl(xs.tail, max)
+        maxCalc(xs.tail, max)
       }
     }
   }

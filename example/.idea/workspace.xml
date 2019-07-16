@@ -296,6 +296,14 @@
     </task>
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="ListsSuite - 2019.07.16 at 12h 30m 29s.xml">
+      <configuration name="ListsSuite" configurationId="ScalaTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="ListsSuite - 2019.07.16 at 12h 30m 44s.xml">
+      <configuration name="ListsSuite" configurationId="ScalaTestRunConfiguration" />
+    </history-entry>
+  </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="true" />
