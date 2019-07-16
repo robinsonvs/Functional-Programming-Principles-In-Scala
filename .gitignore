@@ -18,3 +18,5 @@ project/
 
 .scala-dependencies
 .worksheet
+
+.idea/
