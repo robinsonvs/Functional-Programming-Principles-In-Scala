@@ -114,11 +114,11 @@ import org.scalatest.junit.JUnitRunner
    * every tested aspect of a method.
    */
   test("sum of a few numbers") {
-    assert(sum(List(1,2,0)) === 3)
+    assert(sum(List(1,2,4,0)) === 7)
   }
 
   test("sum of negative numbers") {
-    assert(sum(List(-1,-2,-3)) === -6)
+    assert(sum(List(0,-1,-2,-3)) === -6)
   }
 
   test("sum of zeros") {
@@ -134,7 +134,7 @@ import org.scalatest.junit.JUnitRunner
   }
 
   test("max of negative numbers") {
-    assert(max(List(-1,-4,-6)) === -1)
+    assert(max(List(-1,-4,-6,-8)) === -1)
   }
 
   test("max of zeros") {
