@@ -29,10 +29,10 @@ class FunSetSuite extends FunSuite {
   /**
    * Tests are written using the "test" operator and the "assert" method.
    */
-  // test("string take") {
-  //   val message = "hello, world"
-  //   assert(message.take(5) == "hello")
-  // }
+   test("string take") {
+     val message = "hello, world"
+     assert(message.take(5) == "hello")
+   }
 
   /**
    * For ScalaTest tests, there exists a special equality operator "===" that
@@ -43,9 +43,9 @@ class FunSetSuite extends FunSuite {
    * Try it out! Change the values so that the assertion fails, and look at the
    * error message.
    */
-  // test("adding ints") {
-  //   assert(1 + 2 === 3)
-  // }
+   test("adding ints") {
+     assert(1 + 2 === 3)
+   }
 
 
   import FunSets._
@@ -77,6 +77,8 @@ class FunSetSuite extends FunSuite {
     val s1 = singletonSet(1)
     val s2 = singletonSet(2)
     val s3 = singletonSet(3)
+    val s1001 = singletonSet(1001)
+    val emptySet = intersect(s1, s2)
   }
 
   /**
@@ -101,6 +103,15 @@ class FunSetSuite extends FunSuite {
     }
   }
 
+  test("union of two empty sets is an empty set") {
+    new TestSets {
+      val s = union(emptySet, emptySet)
+      assert(!contains(s, 1))
+      assert(!contains(s, 2))
+      assert(!contains(s, 3))
+    }
+  }
+
   test("union contains all elements of each set") {
     new TestSets {
       val s = union(s1, s2)
@@ -109,6 +120,57 @@ class FunSetSuite extends FunSuite {
       assert(!contains(s, 3), "Union 3")
     }
   }
+
+  test("intersect contains common elements of each set") {
+    new TestSets {
+      val s = intersect(union(s1, s2), union(s2, s3))
+      assert(!contains(s, 1), "Intersect 1")
+      assert(contains(s, 2), "Intersect 2")
+      assert(!contains(s, 3), "Intersect 3")
+    }
+  }
+
+  test("diff(s,t) contains elements of s that are not in t") {
+    new TestSets {
+      val s = diff(union(s1, s2), s2)
+      assert(contains(s, 1), "Diff 1")
+      assert(!contains(s, 2), "Diff 2")
+    }
+  }
+
+  test("filter(s, p) contains elements of s that hold p") {
+    new TestSets {
+      val s = filter(union(s1, s2), x => x % 2 == 0)
+      assert(!contains(s, 1), "Filter 1")
+      assert(contains(s, 2), "Filter 2")
+    }
+  }
+
+  test("forall(s, p) returns whether all elements of s that satisfy p") {
+    new TestSets {
+      val s = union(s1, s2)
+      assert(forall(s, x => x > 0), "Forall 1")
+      assert(!forall(s, x => x > 1), "Forall 2")
+    }
+  }
+
+  test("exists(s, p) returns whether there exists an element of s that satisfies p") {
+    new TestSets {
+      val s = union(s1, s2)
+      assert(exists(s, x => x > 1), "Exists 1")
+      assert(!exists(s, x => x > 2), "Exists 2")
+    }
+  }
+
+  test("map(s, f) a set transformed by applying f to each element of s") {
+    new TestSets {
+      val s = map(union(s1, s2), x => x * 2)
+      assert(!contains(s, 1), "Map 1")
+      assert(contains(s, 2), "Map 2")
+      assert(contains(s, 4), "Map 3")
+    }
+  }
+
 
 
 }
